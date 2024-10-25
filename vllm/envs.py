@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     VLLM_HOST_IP: str = ""
     VLLM_PORT: Optional[int] = None
     VLLM_RPC_BASE_PATH: str = tempfile.gettempdir()
-    VLLM_USE_MODELSCOPE: bool = False
+    VLLM_USE_MODELSCOPE: bool = True
     VLLM_RINGBUFFER_WARNING_INTERVAL: int = 60
     VLLM_INSTANCE_ID: Optional[str] = None
     VLLM_NCCL_SO_PATH: Optional[str] = None
@@ -172,7 +172,7 @@ environment_variables: Dict[str, Callable[[], Any]] = {
     # If true, will load models from ModelScope instead of Hugging Face Hub.
     # note that the value is true or false, not numbers
     "VLLM_USE_MODELSCOPE":
-    lambda: os.environ.get("VLLM_USE_MODELSCOPE", "False").lower() == "true",
+    lambda: os.environ.get("VLLM_USE_MODELSCOPE", "False").lower() == "false",
 
     # Instance id represents an instance of the VLLM. All processes in the same
     # instance should have the same instance id.

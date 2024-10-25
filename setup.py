@@ -72,7 +72,7 @@ class cmake_build_ext(build_ext):
     def compute_num_jobs(self):
         # `num_jobs` is either the value of the MAX_JOBS environment variable
         # (if defined) or the number of CPUs available.
-        num_jobs = envs.MAX_JOBS
+        num_jobs = 4
         if num_jobs is not None:
             num_jobs = int(num_jobs)
             logger.info("Using MAX_JOBS=%d as the number of jobs.", num_jobs)
@@ -550,12 +550,12 @@ setup(
     packages=find_packages(exclude=("benchmarks", "csrc", "docs", "examples",
                                     "tests*")),
     python_requires=">=3.9",
-    install_requires=get_requirements(),
+    # install_requires=get_requirements(),
     ext_modules=ext_modules,
-    extras_require={
-        "tensorizer": ["tensorizer>=2.9.0"],
-        "audio": ["librosa", "soundfile"]  # Required for audio processing
-    },
+    # extras_require={
+    #     "tensorizer": ["tensorizer>=2.9.0"],
+    #     "audio": ["librosa", "soundfile"]  # Required for audio processing
+    # },
     cmdclass={"build_ext": cmake_build_ext} if len(ext_modules) > 0 else {},
     package_data=package_data,
     entry_points={

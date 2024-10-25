@@ -296,7 +296,6 @@ class LLM:
     def generate(
         self,
         prompts: Union[PromptType, Sequence[PromptType]],
-        /,
         *,
         sampling_params: Optional[Union[SamplingParams,
                                         Sequence[SamplingParams]]] = None,
